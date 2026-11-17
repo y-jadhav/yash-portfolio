@@ -1,0 +1,27 @@
+{
+  "specVersion": "1.0",
+  "host": {
+    "displayName": "Yash Jadhav Portfolio"
+  },
+  "entries": [
+    {
+      "identifier": "urn:air:yashjadhav.com:portfolio:overview",
+      "displayName": "Yash Jadhav Video Editing & AI Production Portfolio",
+      "type": "text/markdown",
+      "url": "https://yashjadhav.com/llms.txt",
+      "description": "High-retention commercial video editing, motion graphics, and generative AI video production portfolio of Yash Jadhav.",
+      "tags": [
+        "video-editing",
+        "motion-graphics",
+        "ai-video",
+        "documentary",
+        "portfolio"
+      ],
+      "representativeQueries": [
+        "Find senior video editor in Pune specializing in Premiere Pro and After Effects",
+        "Showcase of AI-accelerated video production and motion graphics case studies",
+        "View commercial documentary and social media growth portfolio of Yash Jadhav"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+# Yash Jadhav — Senior Video Editor & AI Video Production Specialist
+
+> Official portfolio of Yash Jadhav, a Senior Video Editor and AI Producer based in Pune, India. Specializing in high-retention short-form video, commercial documentary films, data infographics, and AI-accelerated post-production.
+
+## Core Specializations
+
+- Video Editing & Narrative Pacing (Adobe Premiere Pro, DaVinci Resolve)
+- Motion Graphics & Visual Effects (Adobe After Effects)
+- Political Infographics & Data Journalism (Adobe Illustrator, Photoshop)
+- Generative AI Video Workflows (Midjourney, Runway Gen-3, ElevenLabs, Claude)
+
+## Featured Works & Case Studies
+
+- [JNPA Port Visit Documentary](/videos/jnpa-yt-video.mp4): Cinematic on-field practical learning documentary for Shubham Rode EXIM coaching at Jawaharlal Nehru Port Authority.
+- [Poligram Delimitation Explainer](/videos/poligram-delimitation.mp4): In-depth geopolitical motion graphics explainer on Indian parliamentary delimitation.
+- [Ciper Analytics Visual Journalism](/ciper/Report Cover.jpg): Publication-grade political infographics, youth perception research study, and 10-slide budget carousels.
+- [Shubham Rode Creator Scaling](/videos/shubham-rode-reel.mp4): Strategic creator growth scaling personal brand from 10K to 75K+ followers on Instagram.
+- [OpenClawd Master Promo](/videos/ai-openclawd-promo.mp4): AI-assisted motion design trailer and sound design.
+
+## Professional Experience
+
+- Senior Video Editor at Eazyfixit (JNPA infrastructure documentaries, corporate films)
+- Content Lead at Rode Exports (Founder personal branding, viral short-form editing)
+- Visual Data Specialist at Ciper Analytics (Political data graphics, parliamentary reports)
+- Lead Explainer Video Producer at Poligram (Investigative policy documentaries)
+
+## Contact & Links
+
+- [LinkedIn Profile](https://www.linkedin.com/in/yashjadhav-yj/)
+- [Curriculum Vitae (PDF)](/CV_Yash_Jadhav.pdf)
+- [Email Contact](mailto:jadhavandyash@gmail.com)
