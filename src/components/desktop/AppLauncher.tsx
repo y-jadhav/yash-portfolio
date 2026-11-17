@@ -137,32 +137,67 @@ export const AppLauncher: React.FC<AppLauncherProps> = ({
   ]
 
   return (
-    <div className="absolute bottom-[115px] lg:bottom-[120px] right-6 lg:right-10 xl:right-12 z-20 hidden md:block select-none">
-      <div className="rounded-2xl border border-white/60 bg-white/70 p-2.5 shadow-[inset_0_1px_1px_rgba(255,255,255,0.8),0_12px_36px_rgba(0,0,0,0.08)] backdrop-blur-2xl">
-        <div className="mb-2 flex items-center justify-between px-1">
-          <span className="font-mono text-[9px] font-bold tracking-wider text-neutral-400 uppercase">
-            Production Tools
-          </span>
-          <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
-        </div>
-        <div className="grid grid-cols-3 gap-2">
-          {apps.map((app) => (
-            <button
-              key={app.id}
-              onClick={app.action}
-              title={`${app.name} (${app.tag})`}
-              className="group relative flex h-11 w-11 items-center justify-center rounded-xl p-0.5 shadow-sm transition-all duration-150 hover:-translate-y-1 hover:shadow-md active:scale-95"
-            >
-              {app.icon}
+    <>
+      {/* Desktop Floating Widget (>= lg): Positioned bottom-right above dock */}
+      <div className="absolute bottom-[115px] lg:bottom-[120px] [@media(max-height:860px)]:bottom-[80px] right-6 lg:right-10 xl:right-12 z-20 hidden lg:block select-none [@media(max-height:860px)]:scale-90 origin-bottom-right transition-all duration-150">
+        <div className="rounded-2xl border border-white/60 bg-white/70 p-2.5 shadow-[inset_0_1px_1px_rgba(255,255,255,0.8),0_12px_36px_rgba(0,0,0,0.08)] backdrop-blur-2xl">
+          <div className="mb-2 flex items-center justify-between px-1">
+            <span className="font-mono text-[9px] font-bold tracking-wider text-neutral-400 uppercase">
+              Production Tools
+            </span>
+            <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
+          </div>
+          <div className="grid grid-cols-3 gap-2">
+            {apps.map((app) => (
+              <button
+                key={app.id}
+                onClick={app.action}
+                title={`${app.name} (${app.tag})`}
+                className="group relative flex h-11 w-11 items-center justify-center rounded-xl p-0.5 shadow-sm transition-all duration-150 hover:-translate-y-1 hover:shadow-md active:scale-95"
+              >
+                {app.icon}
 
-              {/* Tooltip on hover */}
-              <span className="pointer-events-none absolute -top-8 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-md bg-neutral-900 px-2 py-0.5 text-[9px] font-medium text-white opacity-0 shadow-lg transition-opacity group-hover:opacity-100 z-50">
-                {app.name} • {app.tag}
-              </span>
-            </button>
-          ))}
+                {/* Tooltip on hover */}
+                <span className="pointer-events-none absolute -top-8 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-md bg-neutral-900 px-2 py-0.5 text-[9px] font-medium text-white opacity-0 shadow-lg transition-opacity group-hover:opacity-100 z-50">
+                  {app.name} • {app.tag}
+                </span>
+              </button>
+            ))}
+          </div>
         </div>
       </div>
-    </div>
+
+      {/* Mobile & Tablet Inline Section (< lg): Visible in document flow before dock */}
+      <div className="flex lg:hidden flex-col items-center w-full px-3 pt-2 pb-6 z-10 select-none">
+        <div className="w-full max-w-[320px] rounded-2xl border border-white/80 bg-white/75 p-3.5 shadow-[0_8px_24px_rgba(0,0,0,0.06),inset_0_1px_1px_rgba(255,255,255,0.9)] backdrop-blur-xl">
+          <div className="mb-2.5 flex items-center justify-between px-1">
+            <span className="font-mono text-[10px] font-bold tracking-wider text-neutral-500 uppercase">
+              Production Tools
+            </span>
+            <div className="flex items-center gap-1.5">
+              <span className="text-[9px] font-mono text-emerald-700 font-semibold">Active</span>
+              <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
+            </div>
+          </div>
+          <div className="grid grid-cols-3 gap-2.5 justify-items-center">
+            {apps.map((app) => (
+              <button
+                key={app.id}
+                onClick={app.action}
+                aria-label={`${app.name} - ${app.tag}`}
+                className="group flex flex-col items-center justify-center gap-1 rounded-xl p-1 transition-transform active:scale-95 w-full"
+              >
+                <div className="flex h-11 w-11 items-center justify-center rounded-xl shadow-sm transition-all group-active:scale-90">
+                  {app.icon}
+                </div>
+                <span className="text-[9.5px] font-medium text-neutral-700 text-center truncate max-w-[76px]">
+                  {app.name.replace('Adobe ', '')}
+                </span>
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+    </>
   )
 }

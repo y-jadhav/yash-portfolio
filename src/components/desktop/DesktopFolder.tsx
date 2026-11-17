@@ -19,12 +19,12 @@ export const DesktopFolder: React.FC<DesktopFolderProps> = ({
   return (
     <div
       onClick={onClick}
-      className={`group flex w-[86px] flex-col items-center rounded-xl p-1 transition-all duration-150 cursor-pointer select-none ${
+      className={`group flex w-[86px] [@media(max-height:860px)]:w-[76px] flex-col items-center rounded-xl p-1 [@media(max-height:860px)]:p-0.5 transition-all duration-150 cursor-pointer select-none ${
         isOpen ? 'bg-black/10 ring-1 ring-[#57A4F0]' : 'hover:bg-white/40 active:bg-white/60'
       }`}
     >
       {/* Authentic macOS Folder Icon (Identical across all folders, no bubbles) */}
-      <div className="relative h-10 w-12 transition-transform duration-150 group-hover:scale-105 group-active:scale-95">
+      <div className="relative h-10 w-12 [@media(max-height:860px)]:h-8 [@media(max-height:860px)]:w-9.5 transition-transform duration-150 group-hover:scale-105 group-active:scale-95">
         <svg viewBox="0 0 100 80" className="h-full w-full drop-shadow-[0_4px_8px_rgba(0,0,0,0.14)]">
           <defs>
             <linearGradient id={tabGradId} x1="0" y1="0" x2="0" y2="1">
@@ -54,7 +54,7 @@ export const DesktopFolder: React.FC<DesktopFolderProps> = ({
       </div>
 
       {/* Folder Name Label */}
-      <span className="mt-1.5 line-clamp-2 text-center font-sans text-[11px] font-semibold tracking-tight text-neutral-800 drop-shadow-[0_1px_1px_rgba(255,255,255,0.9)] group-hover:text-black">
+      <span className="mt-1.5 [@media(max-height:860px)]:mt-0.5 line-clamp-2 text-center font-sans text-[11px] [@media(max-height:860px)]:text-[9.5px] font-semibold tracking-tight text-neutral-800 drop-shadow-[0_1px_1px_rgba(255,255,255,0.9)] group-hover:text-black">
         {name}
       </span>
     </div>

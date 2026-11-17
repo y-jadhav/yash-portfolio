@@ -33,7 +33,7 @@ export const Desktop: React.FC<DesktopProps> = ({
   onOpenProfile,
 }) => {
   return (
-    <div className="relative flex min-h-[calc(100vh-1.75rem)] w-full flex-col items-center justify-center overflow-x-hidden bg-[#fafafa] pb-24 lg:pb-28">
+    <div className="relative flex min-h-[calc(100vh-1.75rem)] w-full flex-col items-center justify-center overflow-x-hidden bg-[#fafafa] pb-28 sm:pb-32 lg:pb-28">
       {/* Subtle macOS Desktop Wallpaper Grid */}
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:24px_24px] opacity-60" />
 
@@ -68,7 +68,7 @@ export const Desktop: React.FC<DesktopProps> = ({
       {/* =========================================================================
           TOP-RIGHT SIDE: FOLDERS STACKED VERTICALLY (NO BUBBLES, SAME CLEAN ICONS)
          ========================================================================= */}
-      <div className="hidden lg:flex absolute top-3.5 right-4 sm:right-6 xl:right-8 flex-col items-center gap-1.5 z-20 select-none">
+      <div className="hidden lg:flex absolute top-3.5 right-4 sm:right-6 xl:right-8 flex-col items-center gap-1.5 [@media(max-height:860px)]:gap-0.5 z-20 select-none">
         {caseStudies.map((study) => (
           <DesktopFolder
             key={study.id}
@@ -81,12 +81,12 @@ export const Desktop: React.FC<DesktopProps> = ({
         <a
           href="/CV_Yash_Jadhav.pdf"
           download
-          className="group flex w-[86px] flex-col items-center rounded-xl p-1 transition-all duration-150 hover:bg-white/40 active:bg-white/60 cursor-pointer select-none"
+          className="group flex w-[86px] [@media(max-height:860px)]:w-[76px] flex-col items-center rounded-xl p-1 [@media(max-height:860px)]:p-0.5 transition-all duration-150 hover:bg-white/40 active:bg-white/60 cursor-pointer select-none"
         >
-          <div className="relative flex h-10 w-10 items-center justify-center rounded-xl border border-black/10 bg-white p-1.5 shadow-sm transition-transform duration-150 group-hover:scale-105">
-            <FileText size={20} className="text-[#ef4444]" />
+          <div className="relative flex h-10 w-10 [@media(max-height:860px)]:h-8 [@media(max-height:860px)]:w-8 items-center justify-center rounded-xl border border-black/10 bg-white p-1.5 [@media(max-height:860px)]:p-1 shadow-sm transition-transform duration-150 group-hover:scale-105">
+            <FileText size={20} className="text-[#ef4444] [@media(max-height:860px)]:w-4 [@media(max-height:860px)]:h-4" />
           </div>
-          <span className="mt-1 text-center font-sans text-[10.5px] font-semibold text-neutral-800 drop-shadow-[0_1px_1px_rgba(255,255,255,0.9)]">
+          <span className="mt-1 [@media(max-height:860px)]:mt-0.5 text-center font-sans text-[10.5px] [@media(max-height:860px)]:text-[9.5px] font-semibold text-neutral-800 drop-shadow-[0_1px_1px_rgba(255,255,255,0.9)]">
             CV_Yash.pdf
           </span>
         </a>
