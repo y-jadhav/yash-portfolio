@@ -114,7 +114,7 @@ export const Desktop: React.FC<DesktopProps> = ({
       {/* =========================================================================
           CENTERED HERO: CENTER-ALIGNED BOTH VERTICALLY & HORIZONTALLY
          ========================================================================= */}
-      <div className="relative z-10 flex w-full flex-1 items-center justify-center text-center px-4 sm:px-6 lg:px-8 py-4 lg:py-6 my-auto">
+      <div className="relative z-10 flex w-full flex-1 items-center justify-center text-center px-4 sm:px-6 lg:px-8 lg:pl-20 xl:pl-8 py-4 lg:py-6 my-auto">
         <HeroCard onExploreWork={onExploreWork} />
       </div>
 
