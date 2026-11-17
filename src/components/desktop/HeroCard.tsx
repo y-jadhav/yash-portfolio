@@ -9,7 +9,7 @@ export const HeroCard: React.FC<HeroCardProps> = ({ onExploreWork }) => {
   return (
     <div className="relative z-10 mx-auto w-full max-w-xl xl:max-w-2xl 2xl:max-w-3xl px-3 sm:px-4 text-center flex flex-col items-center justify-center select-none">
       {/* 1. Name: Prominent Single Line "I'm Yash Jadhav" */}
-      <h1 className="w-full text-center text-[1.7rem] sm:text-3xl md:text-4xl lg:text-[2.85rem] xl:text-[3.5rem] 2xl:text-[3.6rem] font-extrabold tracking-tight leading-tight text-neutral-900 font-display whitespace-nowrap">
+      <h1 className="w-full text-center text-[1.7rem] sm:text-3xl md:text-3xl lg:text-[2.35rem] xl:text-[3.2rem] 2xl:text-[3.6rem] font-extrabold tracking-tight leading-tight text-neutral-900 font-display whitespace-nowrap">
         I'm <span className="shimmer-text">Yash Jadhav</span>
       </h1>
 

@@ -43,7 +43,7 @@ export const Desktop: React.FC<DesktopProps> = ({
           1. Clock     2. Calendar
           3. Music     4. Photo
          ========================================================================= */}
-      <div className="hidden lg:grid absolute top-5 left-4 sm:left-5 lg:left-6 grid-cols-2 gap-3.5 z-20 select-none">
+      <div className="hidden lg:grid absolute top-4 lg:top-5 left-3 lg:left-5 xl:left-6 grid-cols-2 gap-2.5 lg:gap-3 xl:gap-3.5 z-20 select-none lg:scale-90 xl:scale-100 origin-top-left transition-transform duration-150">
         {/* 1. Clock */}
         <DraggableWidget style={{ position: 'relative' }}>
           <AnalogClockWidget />
