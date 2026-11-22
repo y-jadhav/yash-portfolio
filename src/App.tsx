@@ -109,6 +109,21 @@ export const App: React.FC = () => {
     }, 200)
   }
 
+  // Gracefully reveal site and dismiss the preloader once React initializes
+  useEffect(() => {
+    const loader = document.getElementById('site-loader')
+    if (loader) {
+      const timer = setTimeout(() => {
+        loader.style.opacity = '0'
+        loader.style.visibility = 'hidden'
+        setTimeout(() => {
+          loader.remove()
+        }, 500)
+      }, 350)
+      return () => clearTimeout(timer)
+    }
+  }, [])
+
   // Start background video preloader once page initializes
   useEffect(() => {
     videoPreloader.start()
