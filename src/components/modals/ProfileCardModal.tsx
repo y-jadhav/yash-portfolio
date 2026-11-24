@@ -117,7 +117,7 @@ export const ProfileCardModal: React.FC<ProfileCardModalProps> = ({ onClose }) =
                   <Sparkles size={14} className="text-[#57A4F0] shrink-0 mt-0.5" />
                   <div className="leading-tight">
                     <span className="font-semibold text-neutral-900 mr-1.5">Core Tools:</span>
-                    <span className="text-neutral-600">Premiere Pro, After Effects, Photoshop, Midjourney, Claude</span>
+                    <span className="text-neutral-600">Adobe Suite, Gen AI, Antigravity</span>
                   </div>
                 </div>
               </div>
