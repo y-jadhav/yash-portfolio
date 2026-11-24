@@ -264,7 +264,7 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     id: 'ai-video-workflows',
-    folderName: 'AI Video Production',
+    folderName: 'AI SaaS Animation',
     number: 6,
     category: 'AI-POWERED CREATIVE PRODUCTION',
     title: 'Next-Gen Video Production: Generative AI, Storyboarding & Fast Prototyping',

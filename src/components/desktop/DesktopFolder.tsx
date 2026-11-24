@@ -25,6 +25,8 @@ const DEFAULT_THUMBNAILS: Record<string, string> = {
   'JNPA Port Visit': '/thumbnails/jnpa-port.jpg',
   'ai-video-workflows': '/thumbnails/ai-video.jpg',
   'AI Video Production': '/thumbnails/ai-video.jpg',
+  'ai-saas-animation': '/thumbnails/ai-video.jpg',
+  'AI SaaS Animation': '/thumbnails/ai-video.jpg',
 }
 
 export const DesktopFolder: React.FC<DesktopFolderProps> = ({

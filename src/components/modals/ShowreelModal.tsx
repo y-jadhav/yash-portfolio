@@ -71,7 +71,7 @@ export const ShowreelModal: React.FC<ShowreelModalProps> = ({
     { title: 'Poligram Explainer', src: '/videos/poligram-delimitation.mp4', desc: 'Electoral delimitation explainer documentary' },
     { title: 'Poligram News', src: '/videos/poligram-pr-1nov.mp4', desc: 'Sub-60s Hindi political journalism' },
     { title: 'Shubham Rode', src: '/videos/shubham-rode-reel.mp4', desc: 'Personal branding & viral reels' },
-    { title: 'AI Video Production', src: '/videos/ai-openclawd-promo.mp4', desc: 'AI-assisted kinetic commercial' },
+    { title: 'AI SaaS Animation', src: '/videos/ai-openclawd-promo.mp4', desc: 'AI-assisted kinetic commercial' },
     { title: 'Ciper Analytics', src: '/ciper/Top 5 CM Post.png', desc: 'Publication-Grade Infographics & Visual Data' },
   ]
 
