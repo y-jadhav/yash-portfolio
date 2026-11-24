@@ -82,6 +82,7 @@ export const Desktop: React.FC<DesktopProps> = ({
         {caseStudies.map((study) => (
           <DesktopFolder
             key={study.id}
+            id={study.id}
             name={study.folderName}
             format={study.id === 'ciper-analytics' ? 'MEDIA' : 'MP4'}
             onClick={() => handleItemClick(study)}
@@ -135,6 +136,7 @@ export const Desktop: React.FC<DesktopProps> = ({
           {caseStudies.map((study) => (
             <DesktopFolder
               key={study.id}
+              id={study.id}
               name={study.folderName}
               format={study.id === 'ciper-analytics' ? 'MEDIA' : 'MP4'}
               onClick={() => handleItemClick(study)}
