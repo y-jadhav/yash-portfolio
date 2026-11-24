@@ -19,12 +19,6 @@ export const PortraitWidget: React.FC<PortraitWidgetProps> = ({ onClick }) => {
           className="h-full w-full object-cover object-top transition-transform duration-300 group-hover:scale-105"
         />
         <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-black/10" />
-
-        {/* Rec badge */}
-        <div className="absolute top-2 left-2 flex items-center gap-1 rounded-full bg-black/60 px-1.5 py-0.5 backdrop-blur-md">
-          <span className="h-1.5 w-1.5 rounded-full bg-[#ef4444] animate-pulse" />
-          <span className="font-mono text-[7px] font-bold text-white tracking-widest">REC</span>
-        </div>
       </div>
 
       {/* Caption bar */}

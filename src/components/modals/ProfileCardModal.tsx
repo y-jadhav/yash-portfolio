@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { X, Mail, Phone, MapPin, Briefcase, GraduationCap, Download, ExternalLink, Sparkles } from 'lucide-react'
 import { personalInfo } from '../../data/portfolioData'
 
@@ -7,12 +7,6 @@ interface ProfileCardModalProps {
 }
 
 export const ProfileCardModal: React.FC<ProfileCardModalProps> = ({ onClose }) => {
-  const [photoIndex, setPhotoIndex] = useState(0)
-  const photos = [
-    { src: '/yash-portrait.jpg', label: 'Shoot / Creative' },
-    { src: '/yash-portrait-2.jpg', label: 'Personal / Celebration' },
-  ]
-
   // Global escape key listener to dismiss
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -60,43 +54,20 @@ export const ProfileCardModal: React.FC<ProfileCardModalProps> = ({ onClose }) =
 
         {/* Modal Body - Scrollable on mobile */}
         <div className="flex-1 overflow-y-auto flex flex-col sm:flex-row gap-5 sm:gap-6 p-4 sm:p-7">
-          {/* Left Column: Enlarged Photo Showcase */}
+          {/* Left Column: Enlarged Single Photo Showcase */}
           <div className="flex flex-col items-center sm:w-[220px] shrink-0">
-            <div className="relative aspect-[3/4] h-48 sm:h-auto sm:w-full overflow-hidden rounded-2xl bg-neutral-100 shadow-md border border-black/5 group">
+            <div className="relative aspect-[3/4] h-52 sm:h-auto sm:w-full overflow-hidden rounded-2xl bg-neutral-100 shadow-md border border-black/5 group">
               <img
-                src={photos[photoIndex].src}
+                src="/yash-portrait.jpg"
                 alt={personalInfo.name}
                 className="h-full w-full object-cover object-top transition-transform duration-300 group-hover:scale-105"
               />
               <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-black/10" />
 
-              {/* REC Badge */}
-              <div className="absolute top-2.5 left-2.5 flex items-center gap-1 rounded-full bg-black/60 px-2 py-0.5 backdrop-blur-md">
-                <span className="h-1.5 w-1.5 rounded-full bg-[#ef4444] animate-pulse" />
-                <span className="font-mono text-[8px] font-bold text-white tracking-widest">REC</span>
-              </div>
-
               {/* Hi-Res Badge */}
               <div className="absolute bottom-2.5 right-2.5 rounded-md bg-black/50 px-2 py-0.5 text-[9px] font-mono text-white/90 backdrop-blur-sm">
                 4K Ultra HD
               </div>
-            </div>
-
-            {/* Photo Switcher Pills */}
-            <div className="mt-2.5 flex items-center gap-1.5 bg-neutral-100 p-1 rounded-full border border-black/5">
-              {photos.map((p, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => setPhotoIndex(idx)}
-                  className={`rounded-full px-2.5 py-0.5 text-[10px] font-medium transition-all ${
-                    idx === photoIndex
-                      ? 'bg-white text-black font-bold shadow-sm'
-                      : 'text-neutral-500 hover:text-black'
-                  }`}
-                >
-                  {p.label}
-                </button>
-              ))}
             </div>
           </div>
 
@@ -116,7 +87,7 @@ export const ProfileCardModal: React.FC<ProfileCardModalProps> = ({ onClose }) =
                 I am a Senior Video Editor &amp; AI Specialist with 3+ years orchestrating viral multimedia content. I led post-production for Poligram News (scaling from 0 to 55K+ followers) and engineered executive personal brand workflows for Shubham Rode (10K to 75K+).
               </p>
 
-              {/* Personal Details Grid (Everything fully visible, no truncation ellipsis) */}
+              {/* Personal Details Grid */}
               <div className="mt-4 space-y-2 border-t border-black/5 pt-3">
                 <div className="flex items-start gap-2 text-xs text-neutral-700">
                   <Briefcase size={14} className="text-[#57A4F0] shrink-0 mt-0.5" />
@@ -153,12 +124,12 @@ export const ProfileCardModal: React.FC<ProfileCardModalProps> = ({ onClose }) =
             </div>
 
             {/* Quick Action Links Bar */}
-            <div className="mt-5 flex flex-wrap items-center gap-2 border-t border-black/5 pt-3">
+            <div className="mt-5 flex flex-wrap items-center gap-2 border-t border-black/5 pt-3.5">
               <a
                 href={`mailto:${personalInfo.email}`}
-                className="inline-flex items-center gap-1.5 rounded-xl bg-neutral-900 px-3.5 py-1.5 text-xs font-semibold text-white shadow-sm hover:bg-neutral-800 transition-colors"
+                className="inline-flex items-center gap-1.5 rounded-xl bg-neutral-900 px-3.5 py-2 text-xs font-semibold text-white shadow-sm hover:bg-neutral-800 transition-colors"
               >
-                <Mail size={12} />
+                <Mail size={13} />
                 Send Email
               </a>
 
@@ -166,27 +137,29 @@ export const ProfileCardModal: React.FC<ProfileCardModalProps> = ({ onClose }) =
                 href={personalInfo.linkedin}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-1.5 rounded-xl border border-black/10 bg-white px-3 py-1.5 text-xs font-semibold text-neutral-700 shadow-sm hover:bg-neutral-50 hover:text-black transition-colors"
+                className="inline-flex items-center gap-1.5 rounded-xl border border-black/10 bg-white px-3.5 py-2 text-xs font-semibold text-neutral-700 shadow-sm hover:bg-neutral-50 hover:text-black transition-colors"
               >
-                <ExternalLink size={12} />
+                <ExternalLink size={13} />
                 LinkedIn
               </a>
 
               <a
                 href="/CV_Yash_Jadhav.pdf"
                 download
-                className="inline-flex items-center gap-1.5 rounded-xl border border-black/10 bg-white px-3 py-1.5 text-xs font-semibold text-neutral-700 shadow-sm hover:bg-neutral-50 hover:text-black transition-colors"
+                className="inline-flex items-center gap-1.5 rounded-xl border border-black/10 bg-white px-3.5 py-2 text-xs font-semibold text-neutral-700 shadow-sm hover:bg-neutral-50 hover:text-black transition-colors"
               >
-                <Download size={12} />
-                Download CV
+                <Download size={13} />
+                CV
               </a>
 
+              {/* Clean Call Icon Button */}
               <a
                 href={`tel:${personalInfo.phone.replace(/\s+/g, '')}`}
-                className="inline-flex items-center gap-1 rounded-xl p-1.5 text-neutral-400 hover:text-neutral-800 transition-colors ml-auto"
+                className="inline-flex items-center justify-center h-8 w-8 rounded-xl border border-black/10 bg-white text-neutral-700 hover:text-black hover:border-black/25 shadow-sm transition-colors cursor-pointer"
                 title={`Call: ${personalInfo.phone}`}
+                aria-label={`Call ${personalInfo.phone}`}
               >
-                <Phone size={13} />
+                <Phone size={14} />
               </a>
             </div>
 
