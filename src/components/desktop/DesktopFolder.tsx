@@ -12,11 +12,18 @@ interface DesktopFolderProps {
 
 const DEFAULT_THUMBNAILS: Record<string, string> = {
   'poligram-news': '/thumbnails/poligram-news.jpg',
+  'Poligram News': '/thumbnails/poligram-news.jpg',
   'poligram-explainer': '/thumbnails/poligram-explainer.jpg',
+  'Poligram Explainer': '/thumbnails/poligram-explainer.jpg',
   'ciper-analytics': '/thumbnails/ciper-analytics.jpg',
+  'Ciper Analytics': '/thumbnails/ciper-analytics.jpg',
   'shubham-rode': '/thumbnails/shubham-rode.jpg',
+  'Shubham Rode': '/thumbnails/shubham-rode.jpg',
+  'infrastructure-commercials': '/thumbnails/jnpa-port.jpg',
   'jnpa-port-visit': '/thumbnails/jnpa-port.jpg',
+  'JNPA Port Visit': '/thumbnails/jnpa-port.jpg',
   'ai-video-workflows': '/thumbnails/ai-video.jpg',
+  'AI Video Production': '/thumbnails/ai-video.jpg',
 }
 
 export const DesktopFolder: React.FC<DesktopFolderProps> = ({
@@ -28,7 +35,10 @@ export const DesktopFolder: React.FC<DesktopFolderProps> = ({
   isOpen = false,
   format = 'MP4',
 }) => {
-  const thumb = thumbnailSrc || (id ? DEFAULT_THUMBNAILS[id] : undefined)
+  const thumb =
+    thumbnailSrc ||
+    (id ? DEFAULT_THUMBNAILS[id] : undefined) ||
+    DEFAULT_THUMBNAILS[name]
   const displayLabel = fileName || `${name}.${format === 'MEDIA' ? 'png' : 'mp4'}`
 
   return (
