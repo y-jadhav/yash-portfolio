@@ -15,7 +15,7 @@ export const HeroCard: React.FC<HeroCardProps> = ({ onExploreWork }) => {
 
       {/* 2. Position / Role Line Below Name */}
       <p className="mt-2.5 sm:mt-3.5 w-full text-center text-xs sm:text-base md:text-lg font-semibold tracking-tight text-neutral-800">
-        Senior Video Editor | Short-Form &amp; Motion Graphics | AI Video Production
+        Senior Video Editor | Short-Form &amp; Motion Graphics | AI SaaS Animation
       </p>
 
       {/* 3. Narrative Description Paragraph with Profile Links */}

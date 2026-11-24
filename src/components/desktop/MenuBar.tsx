@@ -9,7 +9,7 @@ export const MenuBar: React.FC = () => {
   const roles = [
     'Senior Video Editor',
     'Short-Form & Motion Graphics',
-    'AI Video Production',
+    'AI SaaS Animation',
   ]
 
   useEffect(() => {
@@ -56,7 +56,7 @@ export const MenuBar: React.FC = () => {
         </button>
         <span className="text-neutral-400 shrink-0">·</span>
         <span className="text-neutral-500 font-medium text-[11px] truncate">
-          Senior Video Editor | Short-Form &amp; Motion Graphics | AI Video Production
+          Senior Video Editor | Short-Form &amp; Motion Graphics | AI SaaS Animation
         </span>
       </div>
 

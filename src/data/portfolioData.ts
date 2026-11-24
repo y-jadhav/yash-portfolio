@@ -2,14 +2,14 @@ import { CaseStudy } from '../types'
 
 export const personalInfo = {
   name: 'Yash Jadhav',
-  title: 'Senior Video Editor & AI Video Production Specialist',
+  title: 'Senior Video Editor & AI SaaS Animation Specialist',
   location: 'Pune, Maharashtra, India',
   email: 'yashjadhav8007@gmail.com',
   phone: '+91 9096833243',
   linkedin: 'https://www.linkedin.com/in/yashjadhav-yj/',
   currentRole: 'Senior Video Editor at Pepup HR Consulting Pvt. Ltd.',
   education: 'Bachelor of Commerce, SPPU Pune (Jul 2022 – Mar 2025)',
-  bio: 'I am a creative and results-driven Senior Video Editor and AI Video Production Specialist with 3+ years of experience delivering high-velocity multimedia content across digital platforms. I translate complex data, political narratives, and founder stories into engaging visual stories under 60 seconds.',
+  bio: 'I am a creative and results-driven Senior Video Editor and AI SaaS Animation Specialist with 3+ years of experience delivering high-velocity multimedia content across digital platforms. I translate complex data, political narratives, and founder stories into engaging visual stories under 60 seconds.',
 }
 
 export const stats = [

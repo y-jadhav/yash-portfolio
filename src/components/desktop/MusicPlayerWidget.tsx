@@ -8,6 +8,7 @@ const getAudio = () => {
   if (typeof window === 'undefined') return null
   if (!globalAudio) {
     globalAudio = new Audio('/audio/calm-guitar.mp3')
+    globalAudio.preload = 'none'
     globalAudio.loop = true
     globalAudio.volume = 0.4
   }
