@@ -309,24 +309,32 @@ export const ShowreelModal: React.FC<ShowreelModalProps> = ({
                 )}
               </div>
 
-              {/* 4 Interactive Clickable Image Thumbnails */}
-              <div className="grid grid-cols-4 gap-2 pt-1">
+              {/* 4 Interactive Clickable Image Thumbnails with Preserved 4:5 Aspect Ratio */}
+              <div className="flex items-center justify-center gap-3 sm:gap-4.5 pt-1">
                 {CIPER_GALLERY.map((item, idx) => {
                   const isSelected = idx === activeImageIdx
                   return (
                     <button
                       key={item.src}
                       onClick={() => setActiveImageIdx(idx)}
-                      className={`group relative flex h-11 items-center justify-center overflow-hidden rounded-lg border transition-all cursor-pointer ${
+                      className={`group relative flex aspect-[4/5] h-16 sm:h-[76px] shrink-0 items-center justify-center overflow-hidden rounded-lg border transition-all duration-150 cursor-pointer ${
                         isSelected
-                          ? 'border-[#57A4F0] ring-2 ring-[#57A4F0]/60 bg-neutral-800'
-                          : 'border-white/10 bg-neutral-900/80 hover:border-white/30 opacity-70 hover:opacity-100'
+                          ? 'border-[#57A4F0] ring-2 ring-[#57A4F0]/70 shadow-lg scale-105'
+                          : 'border-white/15 bg-neutral-900/80 opacity-70 hover:opacity-100 hover:border-white/40 hover:scale-105'
                       }`}
                       title={item.title}
                     >
-                      <img src={item.src} alt={item.title} className="h-full w-full object-cover" />
-                      <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent" />
-                      <span className="absolute bottom-0.5 right-1 rounded bg-black/70 px-1 py-0.2 text-[8.5px] font-mono text-white">
+                      <img
+                        src={item.src}
+                        alt={item.title}
+                        className="h-full w-full object-cover object-top select-none"
+                      />
+                      <div
+                        className={`absolute inset-0 transition-colors ${
+                          isSelected ? 'bg-transparent ring-1 ring-inset ring-white/20' : 'bg-black/25 group-hover:bg-transparent'
+                        }`}
+                      />
+                      <span className="absolute top-1 left-1 flex h-4 w-4 items-center justify-center rounded-full bg-black/80 text-[9px] font-mono font-bold text-white shadow-sm ring-1 ring-white/20">
                         {idx + 1}
                       </span>
                     </button>
