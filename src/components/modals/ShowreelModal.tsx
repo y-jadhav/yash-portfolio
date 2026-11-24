@@ -153,7 +153,7 @@ export const ShowreelModal: React.FC<ShowreelModalProps> = ({
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className="relative flex h-[90vh] w-full max-w-5xl flex-col overflow-hidden rounded-2xl border border-white/10 bg-[#121214] shadow-[0_30px_70px_rgba(0,0,0,0.6)]"
+        className="relative flex h-[90vh] max-h-[90vh] w-full max-w-5xl flex-col overflow-hidden rounded-2xl border border-white/10 bg-[#121214] shadow-[0_30px_70px_rgba(0,0,0,0.6)]"
       >
         {/* Premiere-style Title Bar */}
         <div className="relative flex h-11 shrink-0 items-center justify-between border-b border-white/10 bg-[#1c1c1f] px-3 sm:px-4 select-none gap-2">
@@ -198,11 +198,11 @@ export const ShowreelModal: React.FC<ShowreelModalProps> = ({
           </div>
         </div>
 
-        {/* Video or Image Media Screen Area */}
-        <div className="relative flex flex-1 items-center justify-center bg-black overflow-hidden p-2 select-none">
+        {/* Video or Image Media Screen Area - Constrained with min-h-0 so bottom bar is NEVER pushed off */}
+        <div className="relative flex flex-1 min-h-0 items-center justify-center bg-black overflow-hidden p-2 select-none">
           {isImage ? (
             /* Multi-Image Interactive Showcase */
-            <div className="relative flex h-full w-full items-center justify-center">
+            <div className="relative flex h-full w-full min-h-0 items-center justify-center overflow-hidden">
               {/* Previous Arrow Button */}
               <button
                 onClick={() => setActiveImageIdx((prev) => (prev - 1 + CIPER_GALLERY.length) % CIPER_GALLERY.length)}
@@ -213,12 +213,12 @@ export const ShowreelModal: React.FC<ShowreelModalProps> = ({
               </button>
 
               {/* Main Active Image Display */}
-              <div className="flex h-full w-full items-center justify-center p-2 sm:p-4">
+              <div className="flex h-full w-full min-h-0 items-center justify-center p-2 sm:p-3 overflow-hidden">
                 <img
                   key={currentGalleryItem.src}
                   src={currentGalleryItem.src}
                   alt={currentGalleryItem.title}
-                  className="max-h-[64vh] sm:max-h-[68vh] max-w-full w-auto object-contain rounded-xl shadow-2xl drop-shadow-[0_10px_35px_rgba(0,0,0,0.7)] transition-all duration-200"
+                  className="max-h-full max-w-full w-auto h-auto object-contain rounded-xl shadow-2xl drop-shadow-[0_10px_35px_rgba(0,0,0,0.7)] transition-all duration-200"
                 />
               </div>
 
@@ -261,8 +261,8 @@ export const ShowreelModal: React.FC<ShowreelModalProps> = ({
           )}
         </div>
 
-        {/* Edit Suite Transport Controls & Timeline / Image Gallery Controls */}
-        <div className="shrink-0 border-t border-white/10 bg-[#18181b] p-3 text-white">
+        {/* Edit Suite Transport Controls & Timeline / Image Gallery Controls - SHRINK-0 (Always Visible) */}
+        <div className="shrink-0 border-t border-white/10 bg-[#18181b] px-3.5 py-2.5 text-white">
           {!isImage ? (
             /* Video Timeline Scrubber */
             <div className="flex items-center gap-3">
@@ -285,7 +285,7 @@ export const ShowreelModal: React.FC<ShowreelModalProps> = ({
             </div>
           ) : (
             /* Interactive Image Asset Thumbnails & Metadata */
-            <div className="flex flex-col gap-2.5">
+            <div className="flex flex-col gap-2">
               <div className="flex flex-wrap items-center justify-between gap-2 text-xs">
                 <div className="min-w-0 flex-1">
                   <h4 className="font-sans font-bold text-white text-xs sm:text-sm truncate">
@@ -301,7 +301,7 @@ export const ShowreelModal: React.FC<ShowreelModalProps> = ({
                     href={currentGalleryItem.pdfUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 rounded-lg bg-[#57A4F0] hover:bg-[#3E8FE4] px-3 py-1.5 text-xs font-semibold text-white shadow-md transition-colors"
+                    className="inline-flex items-center gap-1.5 rounded-lg bg-[#57A4F0] hover:bg-[#3E8FE4] px-3 py-1.5 text-xs font-semibold text-white shadow-md transition-colors shrink-0"
                   >
                     <FileText size={13} />
                     Open 10-Slide PDF ↗
@@ -309,15 +309,15 @@ export const ShowreelModal: React.FC<ShowreelModalProps> = ({
                 )}
               </div>
 
-              {/* 4 Interactive Clickable Image Thumbnails with Preserved 4:5 Aspect Ratio */}
-              <div className="flex items-center justify-center gap-3 sm:gap-4.5 pt-1">
+              {/* 4 Interactive Clickable Image Thumbnails with Natural 4:5 Aspect Ratio */}
+              <div className="flex items-center justify-center gap-2.5 sm:gap-3.5 pt-0.5">
                 {CIPER_GALLERY.map((item, idx) => {
                   const isSelected = idx === activeImageIdx
                   return (
                     <button
                       key={item.src}
                       onClick={() => setActiveImageIdx(idx)}
-                      className={`group relative flex aspect-[4/5] h-16 sm:h-[76px] shrink-0 items-center justify-center overflow-hidden rounded-lg border transition-all duration-150 cursor-pointer ${
+                      className={`group relative flex aspect-[4/5] h-13 sm:h-16 shrink-0 items-center justify-center overflow-hidden rounded-lg border transition-all duration-150 cursor-pointer ${
                         isSelected
                           ? 'border-[#57A4F0] ring-2 ring-[#57A4F0]/70 shadow-lg scale-105'
                           : 'border-white/15 bg-neutral-900/80 opacity-70 hover:opacity-100 hover:border-white/40 hover:scale-105'
@@ -334,7 +334,7 @@ export const ShowreelModal: React.FC<ShowreelModalProps> = ({
                           isSelected ? 'bg-transparent ring-1 ring-inset ring-white/20' : 'bg-black/25 group-hover:bg-transparent'
                         }`}
                       />
-                      <span className="absolute top-1 left-1 flex h-4 w-4 items-center justify-center rounded-full bg-black/80 text-[9px] font-mono font-bold text-white shadow-sm ring-1 ring-white/20">
+                      <span className="absolute top-0.5 left-0.5 flex h-3.5 w-3.5 items-center justify-center rounded-full bg-black/85 text-[8px] font-mono font-bold text-white shadow-sm ring-1 ring-white/20">
                         {idx + 1}
                       </span>
                     </button>
@@ -345,7 +345,7 @@ export const ShowreelModal: React.FC<ShowreelModalProps> = ({
           )}
 
           {/* Transport Bar & Switcher */}
-          <div className="mt-2.5 flex flex-wrap items-center justify-between gap-3 pt-2 border-t border-white/5">
+          <div className="mt-2 flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-white/5">
             {!isImage ? (
               /* Play/Pause & Shuttle keys */
               <div className="flex items-center gap-2">
@@ -382,10 +382,10 @@ export const ShowreelModal: React.FC<ShowreelModalProps> = ({
             ) : (
               <div className="flex items-center gap-2 text-xs font-mono text-neutral-400">
                 <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
-                <span>Gallery Controls:</span>
+                <span>Gallery:</span>
                 <kbd className="bg-neutral-800 px-1.5 py-0.5 rounded text-[10px] text-neutral-300">←</kbd>
                 <kbd className="bg-neutral-800 px-1.5 py-0.5 rounded text-[10px] text-neutral-300">→</kbd>
-                <span className="text-neutral-500 text-[11px]">Navigate Images</span>
+                <span className="text-neutral-500 text-[11px]">Navigate</span>
                 <span className="text-neutral-600">·</span>
                 <kbd className="bg-neutral-800 px-1.5 py-0.5 rounded text-[10px] text-neutral-300">Esc</kbd>
                 <span className="text-neutral-500 text-[11px]">Close</span>
