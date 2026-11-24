@@ -32,6 +32,16 @@ export const Desktop: React.FC<DesktopProps> = ({
   onOpenContact,
   onOpenProfile,
 }) => {
+  const handleItemClick = (study: CaseStudy) => {
+    if (study.videoSrc && onPlayVideo) {
+      onPlayVideo(study.videoSrc, study.folderName)
+    } else if (study.id === 'ciper-analytics' && onPlayVideo) {
+      onPlayVideo('/ciper/Top 5 CM Post.png', 'Ciper Analytics: Publication-Grade Infographics')
+    } else {
+      onOpenCaseStudy(study)
+    }
+  }
+
   return (
     <div className="relative flex min-h-[calc(100vh-1.75rem)] w-full flex-col items-center justify-center overflow-x-hidden bg-[#fafafa] pb-28 sm:pb-32 lg:pb-28">
       {/* Subtle macOS Desktop Wallpaper Grid */}
@@ -73,7 +83,8 @@ export const Desktop: React.FC<DesktopProps> = ({
           <DesktopFolder
             key={study.id}
             name={study.folderName}
-            onClick={() => onOpenCaseStudy(study)}
+            format={study.id === 'ciper-analytics' ? 'MEDIA' : 'MP4'}
+            onClick={() => handleItemClick(study)}
           />
         ))}
 
@@ -125,7 +136,8 @@ export const Desktop: React.FC<DesktopProps> = ({
             <DesktopFolder
               key={study.id}
               name={study.folderName}
-              onClick={() => onOpenCaseStudy(study)}
+              format={study.id === 'ciper-analytics' ? 'MEDIA' : 'MP4'}
+              onClick={() => handleItemClick(study)}
             />
           ))}
           <a

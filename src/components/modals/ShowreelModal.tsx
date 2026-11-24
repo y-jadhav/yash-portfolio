@@ -21,6 +21,18 @@ export const ShowreelModal: React.FC<ShowreelModalProps> = ({
   const [duration, setDuration] = useState(0)
   const videoRef = useRef<HTMLVideoElement>(null)
 
+  useEffect(() => {
+    setCurrentVideo(initialVideo)
+    setVideoTitle(initialTitle)
+    setIsPlaying(true)
+  }, [initialVideo, initialTitle])
+
+  const isImage =
+    currentVideo.endsWith('.png') ||
+    currentVideo.endsWith('.jpg') ||
+    currentVideo.endsWith('.jpeg') ||
+    currentVideo.endsWith('.webp')
+
   // Automatically streams from background preloaded blob cache when ready, or direct stream
   const activeStreamSrc = usePreloadedVideo(currentVideo)
 
@@ -29,7 +41,8 @@ export const ShowreelModal: React.FC<ShowreelModalProps> = ({
     { title: 'Poligram Explainer', src: '/videos/poligram-delimitation.mp4', desc: 'Electoral delimitation explainer documentary' },
     { title: 'Poligram News', src: '/videos/poligram-pr-1nov.mp4', desc: 'Sub-60s Hindi political journalism' },
     { title: 'Shubham Rode', src: '/videos/shubham-rode-reel.mp4', desc: 'Personal branding & viral reels' },
-    { title: 'OpenClawd Promo (AI)', src: '/videos/ai-openclawd-promo.mp4', desc: 'AI-assisted kinetic commercial' },
+    { title: 'AI Video Production', src: '/videos/ai-openclawd-promo.mp4', desc: 'AI-assisted kinetic commercial' },
+    { title: 'Ciper Analytics', src: '/ciper/Top 5 CM Post.png', desc: 'Publication-Grade Infographics & Visual Data' },
   ]
 
   const switchReel = (src: string, title: string) => {
@@ -118,90 +131,126 @@ export const ShowreelModal: React.FC<ShowreelModalProps> = ({
           </div>
         </div>
 
-        {/* Video Screen Area */}
-        <div className="relative flex flex-1 items-center justify-center bg-black overflow-hidden">
-          <video
-            ref={videoRef}
-            src={activeStreamSrc}
-            autoPlay
-            playsInline
-            muted={isMuted}
-            onTimeUpdate={() => videoRef.current && setCurrentTime(videoRef.current.currentTime)}
-            onLoadedMetadata={() => videoRef.current && setDuration(videoRef.current.duration)}
-            onEnded={() => setIsPlaying(false)}
-            onClick={togglePlay}
-            className="h-full w-full object-contain cursor-pointer"
-          />
-
-          {/* Floating Pause/Play overlay hint on hover */}
-          {!isPlaying && (
-            <div
-              onClick={togglePlay}
-              className="absolute inset-0 flex items-center justify-center bg-black/40 cursor-pointer"
-            >
-              <div className="flex h-16 w-16 items-center justify-center rounded-full bg-white/90 text-black shadow-2xl hover:scale-110 transition-transform">
-                <Play size={28} fill="currentColor" className="ml-1 text-black" />
-              </div>
+        {/* Video or Image Media Screen Area */}
+        <div className="relative flex flex-1 items-center justify-center bg-black overflow-hidden p-2">
+          {isImage ? (
+            <div className="flex h-full w-full items-center justify-center p-3 select-none">
+              <img
+                src={currentVideo}
+                alt={videoTitle}
+                className="max-h-[78vh] max-w-full w-auto object-contain rounded-lg shadow-2xl drop-shadow-[0_10px_30px_rgba(0,0,0,0.5)]"
+              />
             </div>
+          ) : (
+            <>
+              <video
+                ref={videoRef}
+                src={activeStreamSrc}
+                autoPlay
+                playsInline
+                muted={isMuted}
+                onTimeUpdate={() => videoRef.current && setCurrentTime(videoRef.current.currentTime)}
+                onLoadedMetadata={() => videoRef.current && setDuration(videoRef.current.duration)}
+                onEnded={() => setIsPlaying(false)}
+                onClick={togglePlay}
+                className="h-full w-full object-contain cursor-pointer"
+              />
+
+              {/* Floating Pause/Play overlay hint on hover */}
+              {!isPlaying && (
+                <div
+                  onClick={togglePlay}
+                  className="absolute inset-0 flex items-center justify-center bg-black/40 cursor-pointer"
+                >
+                  <div className="flex h-16 w-16 items-center justify-center rounded-full bg-white/90 text-black shadow-2xl hover:scale-110 transition-transform">
+                    <Play size={28} fill="currentColor" className="ml-1 text-black" />
+                  </div>
+                </div>
+              )}
+            </>
           )}
         </div>
 
         {/* Edit Suite Transport Controls & Timeline */}
         <div className="shrink-0 border-t border-white/10 bg-[#18181b] p-3 text-white">
-          {/* Timeline Scrubber */}
-          <div className="flex items-center gap-3">
-            <input
-              type="range"
-              min={0}
-              max={duration || 100}
-              step={0.05}
-              value={currentTime}
-              onChange={(e) => {
-                const val = parseFloat(e.target.value)
-                setCurrentTime(val)
-                if (videoRef.current) videoRef.current.currentTime = val
-              }}
-              className="h-1.5 w-full appearance-none rounded-lg bg-neutral-700 accent-[#57A4F0] cursor-pointer"
-            />
-            <span className="font-mono text-[10px] text-neutral-400 whitespace-nowrap">
-              {formatTimecode(duration)}
-            </span>
-          </div>
-
-          {/* Transport Bar */}
-          <div className="mt-2.5 flex flex-wrap items-center justify-between gap-3">
-            {/* Play/Pause & Shuttle keys */}
-            <div className="flex items-center gap-2">
-              <button
-                onClick={() => {
-                  if (videoRef.current) videoRef.current.currentTime = 0
+          {!isImage ? (
+            /* Video Timeline Scrubber */
+            <div className="flex items-center gap-3">
+              <input
+                type="range"
+                min={0}
+                max={duration || 100}
+                step={0.05}
+                value={currentTime}
+                onChange={(e) => {
+                  const val = parseFloat(e.target.value)
+                  setCurrentTime(val)
+                  if (videoRef.current) videoRef.current.currentTime = val
                 }}
-                className="rounded p-1.5 text-neutral-400 hover:bg-white/10 hover:text-white"
-                title="Rewind to start"
-              >
-                <RotateCcw size={14} />
-              </button>
-
-              <button
-                onClick={togglePlay}
-                className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#57A4F0] text-white hover:bg-[#3E8FE4] transition-colors"
-                title="Play/Pause [Space]"
-              >
-                {isPlaying ? <Pause size={14} fill="currentColor" /> : <Play size={14} fill="currentColor" className="ml-0.5" />}
-              </button>
-
-              <button
-                onClick={() => setIsMuted(!isMuted)}
-                className="rounded p-1.5 text-neutral-400 hover:bg-white/10 hover:text-white"
-                title="Mute / Unmute"
-              >
-                {isMuted ? <VolumeX size={15} /> : <Volume2 size={15} />}
-              </button>
-
-              <span className="hidden sm:inline font-mono text-[10px] text-neutral-400 ml-2">
-                Shuttle keys: <kbd className="bg-neutral-800 px-1 py-0.5 rounded text-neutral-300">Space</kbd> Play/Pause · <kbd className="bg-neutral-800 px-1 py-0.5 rounded text-neutral-300">J</kbd> Rewind · <kbd className="bg-neutral-800 px-1 py-0.5 rounded text-neutral-300">K</kbd> Pause · <kbd className="bg-neutral-800 px-1 py-0.5 rounded text-neutral-300">L</kbd> Forward
+                className="h-1.5 w-full appearance-none rounded-lg bg-neutral-700 accent-[#57A4F0] cursor-pointer"
+              />
+              <span className="font-mono text-[10px] text-neutral-400 whitespace-nowrap">
+                {formatTimecode(duration)}
               </span>
             </div>
+          ) : (
+            /* Image Asset Details Bar */
+            <div className="flex items-center justify-between text-xs text-neutral-400 py-0.5">
+              <span className="font-mono text-[11px] text-neutral-300">
+                Visual Report &amp; Data Infographic Asset
+              </span>
+              <a
+                href="/ciper/Budget 2026 Carousel.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[11px] font-semibold text-[#57A4F0] hover:underline"
+              >
+                View Full Budget Carousel (PDF) ↗
+              </a>
+            </div>
+          )}
+
+          {/* Transport Bar & Switcher */}
+          <div className="mt-2.5 flex flex-wrap items-center justify-between gap-3">
+            {!isImage ? (
+              /* Play/Pause & Shuttle keys */
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => {
+                    if (videoRef.current) videoRef.current.currentTime = 0
+                  }}
+                  className="rounded p-1.5 text-neutral-400 hover:bg-white/10 hover:text-white"
+                  title="Rewind to start"
+                >
+                  <RotateCcw size={14} />
+                </button>
+
+                <button
+                  onClick={togglePlay}
+                  className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#57A4F0] text-white hover:bg-[#3E8FE4] transition-colors"
+                  title="Play/Pause [Space]"
+                >
+                  {isPlaying ? <Pause size={14} fill="currentColor" /> : <Play size={14} fill="currentColor" className="ml-0.5" />}
+                </button>
+
+                <button
+                  onClick={() => setIsMuted(!isMuted)}
+                  className="rounded p-1.5 text-neutral-400 hover:bg-white/10 hover:text-white"
+                  title="Mute / Unmute"
+                >
+                  {isMuted ? <VolumeX size={15} /> : <Volume2 size={15} />}
+                </button>
+
+                <span className="hidden sm:inline font-mono text-[10px] text-neutral-400 ml-2">
+                  Shuttle keys: <kbd className="bg-neutral-800 px-1 py-0.5 rounded text-neutral-300">Space</kbd> Play/Pause · <kbd className="bg-neutral-800 px-1 py-0.5 rounded text-neutral-300">J</kbd> Rewind · <kbd className="bg-neutral-800 px-1 py-0.5 rounded text-neutral-300">K</kbd> Pause · <kbd className="bg-neutral-800 px-1 py-0.5 rounded text-neutral-300">L</kbd> Forward
+                </span>
+              </div>
+            ) : (
+              <div className="flex items-center gap-2 text-xs font-mono text-neutral-400">
+                <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
+                Publication Graphics Preview
+              </div>
+            )}
 
             {/* Reel switcher tabs */}
             <div className="flex items-center gap-1 overflow-x-auto">
