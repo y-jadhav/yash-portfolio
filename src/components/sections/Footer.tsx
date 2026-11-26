@@ -21,7 +21,7 @@ export const Footer: React.FC = () => {
                 Let's produce your next viral video narrative.
               </h2>
               <p className="mt-3 text-sm text-neutral-600 leading-relaxed">
-                Open for Senior Video Editor roles, high-retention social retainers, AI SaaS animation, and documentary storytelling — available for full-time positions and select global projects.
+                Open for Senior Video Editor roles, high-retention social retainers, AI video production, and documentary storytelling — available for full-time positions and select global projects.
               </p>
             </div>
 
